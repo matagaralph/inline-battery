@@ -168,8 +168,8 @@ PlasmoidItem {
 				Layout.preferredHeight: config.iconHeight
 				Layout.alignment: Qt.AlignVCenter
 
-				MacBatteryIcon {
-					id: batteryIcon
+				PillBatteryIcon {
+					id: pillIcon
 					anchors.fill: parent
 					charging: batterywidget.currentBatteryCharging
 					charge: batterywidget.currentBatteryPercent

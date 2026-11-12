@@ -8,10 +8,10 @@
             }
         ],
         "Category": "System Information",
-        "Description": "macOS Big Sur style inline battery indicator",
+        "Description": "Battery indicator with a slim pill icon and inline percentage for the panel",
         "Icon": "battery",
-        "Id": "org.kde.plasma.bigSur-inlineBattery",
-        "Name": "mcOS BS Inline Battery",
+        "Id": "org.ralph.inlinebattery",
+        "Name": "Inline Battery",
         "Version": "6",
         "Website": "https://kelvinzhang.ca"
     },

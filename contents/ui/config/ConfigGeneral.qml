@@ -13,7 +13,7 @@ ConfigPage {
 	AppletConfig { id: config }
 
 	ConfigSection {
-		label: i18n("Mac Inline Battery")
+		label: i18n("Inline Battery")
 
 		ConfigCheckBox {
 			text: i18n("Enabled")

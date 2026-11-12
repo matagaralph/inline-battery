@@ -2,7 +2,7 @@ import QtQuick
 import org.kde.kirigami as Kirigami
 
 Item {
-	id: batteryIcon
+	id: pillIcon
 	property bool charging: false
 	property int charge: 0
 	property color normalColor: Kirigami.Theme.textColor
@@ -11,7 +11,7 @@ Item {
 	property int lowBatteryPercent: 20
 
 	Rectangle {
-		id: container
+		id: body
 		anchors.fill: parent
 		anchors.rightMargin: 2
 		color: "transparent"
@@ -42,7 +42,7 @@ Item {
 	}
 
 	Rectangle {
-		anchors.left: container.right
+		anchors.left: body.right
 		anchors.leftMargin: 1
 		anchors.verticalCenter: parent.verticalCenter
 		radius: 4
