@@ -117,6 +117,28 @@ PlasmoidItem {
 		Layout.minimumHeight: rowLayout.implicitHeight
 		Layout.preferredHeight: rowLayout.implicitHeight
 
+		function hideExpandedFrame() {
+			let item = panelItem
+			while (item.parent) {
+				item = item.parent
+				for (const child of item.children) {
+					if (child.imagePath === "widgets/tabbar") {
+						child.visible = false
+						child.opacity = 0
+						return
+					}
+				}
+			}
+		}
+
+		Component.onCompleted: hideExpandedFrame()
+		onParentChanged: hideExpandedFrame()
+
+		Connections {
+			target: batterywidget
+			function onExpandedChanged() { panelItem.hideExpandedFrame() }
+		}
+
 		MouseArea {
 			anchors.fill: parent
 			onClicked: batterywidget.expanded = !batterywidget.expanded
@@ -175,12 +197,14 @@ PlasmoidItem {
 	fullRepresentation: PopupDialog {
 		id: dialogItem
 		Layout.minimumWidth: Kirigami.Units.iconSizes.medium * 9
+		Layout.preferredWidth: implicitWidth
 		Layout.minimumHeight: Kirigami.Units.gridUnit * 15
+		Layout.preferredHeight: Kirigami.Units.gridUnit * 15
 		focus: true
 
 		model: batterywidget.expanded ? batteries : null
-		screenBrightnessControl: screenBrightnessControl
-		keyboardBrightnessControl: keyboardBrightnessControl
+		screenBrightness: screenBrightnessControl
+		keyboardBrightness: keyboardBrightnessControl
 
 		onPowermanagementChanged: checked => batterywidget.setPowerManagement(checked)
 	}

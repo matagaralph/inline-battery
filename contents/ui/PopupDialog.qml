@@ -7,10 +7,11 @@ FocusScope {
 	id: dialog
 	focus: true
 
+	implicitWidth: Kirigami.Units.gridUnit * 20
 
 	property alias model: batteryList.model
-	required property ScreenBrightnessControl screenBrightnessControl
-	required property KeyboardBrightnessControl keyboardBrightnessControl
+	required property ScreenBrightnessControl screenBrightness
+	required property KeyboardBrightnessControl keyboardBrightness
 
 	signal powermanagementChanged(bool checked)
 
@@ -28,7 +29,7 @@ FocusScope {
 
 		Repeater {
 			id: screenBrightnessRepeater
-			model: dialog.screenBrightnessControl.displays
+			model: dialog.screenBrightness.displays
 
 			BrightnessItem {
 				required property var model
@@ -38,7 +39,7 @@ FocusScope {
 				label: screenBrightnessRepeater.count > 1 ? model.label : i18n("Display Brightness")
 				value: model.brightness
 				maximumValue: model.maxBrightness
-				onMoved: value => dialog.screenBrightnessControl.setBrightness(model.displayName, value)
+				onMoved: value => dialog.screenBrightness.setBrightness(model.displayName, value)
 			}
 		}
 
@@ -47,10 +48,10 @@ FocusScope {
 			width: parent.width
 			icon: "input-keyboard-brightness"
 			label: i18n("Keyboard Brightness")
-			visible: dialog.keyboardBrightnessControl.isBrightnessAvailable
-			value: dialog.keyboardBrightnessControl.brightness
-			maximumValue: dialog.keyboardBrightnessControl.brightnessMax
-			onMoved: value => dialog.keyboardBrightnessControl.brightness = value
+			visible: dialog.keyboardBrightness.isBrightnessAvailable
+			value: dialog.keyboardBrightness.brightness
+			maximumValue: dialog.keyboardBrightness.brightnessMax
+			onMoved: value => dialog.keyboardBrightness.brightness = value
 		}
 	}
 
